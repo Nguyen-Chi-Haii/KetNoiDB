@@ -1,4 +1,5 @@
 ﻿using KetNoiDB.Data;
+using KetNoiDB.Models.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SchoolDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("KetNoiDB")));
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 var app = builder.Build();
 
