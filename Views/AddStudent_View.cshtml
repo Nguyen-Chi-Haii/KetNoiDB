@@ -1,0 +1,53 @@
+﻿@model KetNoiDB.Models.Domain.Student
+
+@{
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+   @errorMessage;
+}
+
+<form asp-controller="Student" asp-action="AddStudent" method="post">
+    <div class="form-group">
+        <label class="form-label">Name:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Birth:</label>
+        <input asp-for="Birth" type="date" class="form-control" />
+        <span asp-validation-for="Birth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Mssv:</label>
+        <input asp-for="Mssv" class="form-control" />
+        <span asp-validation-for="Mssv" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Description:</label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Giới tính:</label><br />
+        <input type="radio" asp-for="Gender" value="true" /> <label>Nam</label>
+        <input type="radio" asp-for="Gender" value="false" /> <label>Nữ</label>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Image URL:</label>
+        <input asp-for="ImgUrl" class="form-control" />
+        <span asp-validation-for="ImgUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <input type="submit" value="Add" class="btn btn-primary" />
+    </div>
+</form>
