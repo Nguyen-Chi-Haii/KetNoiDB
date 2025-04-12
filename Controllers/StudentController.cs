@@ -13,7 +13,7 @@ namespace KetNoiDB.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IStudentRepository _studentRepository;
+        private IStudentRepository _studentRepository;
 
         public StudentController(IStudentRepository studentRepository)
         {
@@ -21,6 +21,7 @@ namespace KetNoiDB.Controllers
         }
 
         // GET: /Student/GetAll
+        [Route("/Student/GetAll")]
         public IActionResult GetAll(string? searchString, string? type)
         {
             var allStudent = _studentRepository.GetAll(searchString, type);

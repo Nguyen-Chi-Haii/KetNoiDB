@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SchoolDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("KetNoiDB")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SchoolDBconnection")));
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 var app = builder.Build();

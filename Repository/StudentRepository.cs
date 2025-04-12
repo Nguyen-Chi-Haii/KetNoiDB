@@ -15,12 +15,29 @@ namespace KetNoiDB.Models.Repository
                 this.dbContext = dbContext;
             }
 
-            public IEnumerable<Student> GetAll()
+            public IEnumerable<Student> GetAll(string? searchString, string? type)
+            {
+            if (!String.IsNullOrEmpty(searchString)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            {
+                var List = from l in dbContext.Students  // lấy toàn bộ liên kết
+                           select l;
+
+                if (type == "Mssv")
+                {
+                    return List.Where(s => s.Mssv.Contains(searchString));  // lọc theo chuỗi tìm kiếm
+                }
+                else
+                {
+                    return List.Where(s => s.Name.Contains(searchString));  // lọc theo chuỗi tìm kiếm
+                }
+            }
+            else
             {
                 return dbContext.Students;
             }
+        }
 
-            public VMStudent? GetStudentsById(int id)
+        public VMStudent? GetStudentsById(int id)
             {
                 var student = dbContext.Students.FirstOrDefault(p => p.Id == id);
                 if (student != null)
