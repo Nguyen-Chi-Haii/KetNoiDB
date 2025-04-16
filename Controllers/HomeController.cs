@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using KetNoiDB.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +24,14 @@ namespace KetNoiDB.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(int code)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (code == 404)
+            {
+                return View("NotFound");
+            }
+            return View("Error");
         }
+
     }
 }
