@@ -26,9 +26,15 @@
                 }
             </p>
             <p><span class="d-inline-block w-100 fw-bold">Mô tả:</span> @Model.Description</p>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-primary" href="/Student/EditStudentById/@Model.Id">Chỉnh sửa</a>
+                <a class="btn btn-danger" href="/Student/DelStudentById/@Model.Id">Xóa</a>
+            } else if(User.IsInRole("Editor"))
+            {
+                <a class="btn btn-primary" href="/Student/EditStudentById/@Model.Id">Chỉnh sửa</a>
+            }
 
-            <a class="btn btn-primary" href="/Student/EditStudentById/@Model.Id">Chỉnh sửa</a>
-            <a class="btn btn-danger" href="/Student/DelStudentById/@Model.Id">Xóa</a>
         </div>
     </div>
 </div>

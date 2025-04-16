@@ -8,9 +8,11 @@ using KetNoiDB.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KetNoiDB.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private IStudentRepository _studentRepository;
@@ -37,7 +39,7 @@ namespace KetNoiDB.Controllers
             else
                 return View("NotFound");
         }
-
+        [Authorize(Roles = "Admin,Editor")]
         // GET: /Student/EditStudentById/id
         [HttpGet]
         public IActionResult EditStudentById(int id)
@@ -48,7 +50,7 @@ namespace KetNoiDB.Controllers
             else
                 return View("NotFound");
         }
-
+        [Authorize(Roles = "Admin,Editor")]
         // POST: /Student/EditStudentById/id
         [HttpPost]
         public IActionResult EditStudentById([FromRoute] int id, VMStudent student)
@@ -81,14 +83,14 @@ namespace KetNoiDB.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin,Editor")]
         // GET: /Student/AddStudent
         [HttpGet]
         public IActionResult AddStudent()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin,Editor")]
         // POST: /Student/AddStudent
         [HttpPost]
         public IActionResult AddStudent(VMStudent studentData)
@@ -113,7 +115,7 @@ namespace KetNoiDB.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin,Editor")]
         // GET: /Student/DelStudentById/id
         public IActionResult DelStudentById(int id)
         {
